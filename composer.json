@@ -1,5 +1,5 @@
 {
-    "name": "opcodesio/spike",
+    "name": "xqus/spike",
     "description": "Easy user billing for Laravel projects",
     "keywords": [
         "opcodes",
@@ -21,7 +21,7 @@
         "php": "^8.1",
         "arukompas/livewire-charts": "^3.2.0",
         "illuminate/contracts": "^10.0|^11.7|^12.0",
-        "livewire/livewire": "^3.0",
+        "livewire/livewire": "^3.0|^.0",
         "wire-elements/modal": "^2.0"
     },
     "require-dev": {
