@@ -17,6 +17,6 @@
     </div>
 
     <div class="mt-12">
-        <livewire:spike::credit-transactions />
+        
     </div>
 </x-spike::layout>
