@@ -3,7 +3,6 @@
 namespace Opcodes\Spike\Paddle;
 
 use Carbon\CarbonInterface;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
@@ -71,10 +70,8 @@ class Subscription extends \Laravel\Paddle\Subscription implements SpikeSubscrip
 
     /**
      * Get the subscription items related to the subscription.
-     *
-     * @return HasMany|Collection|SubscriptionItem[]
      */
-    public function items()
+    public function items(): HasMany
     {
         return $this->hasMany(Cashier::$subscriptionItemModel);
     }
