@@ -32,7 +32,7 @@
                     {{ __('spike::translations.checkout') }}
                 </button>
             @elseif(Spike::paymentProvider()->isPaddle())
-                <livewire:spike::product-checkout-button-paddle key="{{ now() }}" />
+                <livewire:spike.product-checkout-button-paddle key="{{ now() }}" />
             @endif
 
             <div class="flex items-center text-base mt-2">

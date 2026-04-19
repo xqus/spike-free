@@ -69,7 +69,7 @@ class PurchaseCredits extends Component
         if (Spike::stripeCheckoutEnabled()) {
             return app(StripeCheckoutRedirectWithLock::class)->handle($this->cart());
         } else {
-            $this->dispatch('openModal', component: 'spike::checkout');
+            $this->dispatch('openModal', component: 'spike.checkout');
         }
 
         return null;
@@ -77,7 +77,7 @@ class PurchaseCredits extends Component
 
     protected function checkoutPaddle()
     {
-        $this->dispatch('openModal', component: 'spike::checkout');
+        $this->dispatch('openModal', component: 'spike.checkout');
 
         return null;
     }

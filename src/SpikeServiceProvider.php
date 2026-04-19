@@ -280,26 +280,26 @@ class SpikeServiceProvider extends ServiceProvider
 
         if (class_exists(Livewire::class)) {
             // Usage
-            Livewire::component('spike::credit-transactions', CreditTransactions::class);
+            Livewire::component('spike.credit-transactions', CreditTransactions::class);
 
             // Get credits
-            Livewire::component('spike::subscriptions', Subscriptions::class);
-            Livewire::component('spike::purchase-credits', PurchaseCredits::class);
-            Livewire::component('spike::validate-cart', ValidateCart::class);
+            Livewire::component('spike.subscriptions', Subscriptions::class);
+            Livewire::component('spike.purchase-credits', PurchaseCredits::class);
+            Livewire::component('spike.validate-cart', ValidateCart::class);
 
             // Billing
-            Livewire::component('spike::stripe-payment-methods', StripePaymentMethods::class);
-            Livewire::component('spike::paddle-payment-method', PaddlePaymentMethod::class);
-            Livewire::component('spike::invoices', Invoices::class);
+            Livewire::component('spike.stripe-payment-methods', StripePaymentMethods::class);
+            Livewire::component('spike.paddle-payment-method', PaddlePaymentMethod::class);
+            Livewire::component('spike.invoices', Invoices::class);
 
             // Modals
-            Livewire::component('spike::checkout', CheckoutModal::class);
-            Livewire::component('spike::subscribe', SubscribeModal::class);
-            Livewire::component('spike::add-payment-method', AddPaymentMethodModal::class);
+            Livewire::component('spike.checkout', CheckoutModal::class);
+            Livewire::component('spike.subscribe', SubscribeModal::class);
+            Livewire::component('spike.add-payment-method', AddPaymentMethodModal::class);
 
             // Extra
-            Livewire::component('spike::update-payment-method-paddle', UpdatePaymentMethodPaddle::class);
-            Livewire::component('spike::product-checkout-button-paddle', PaddleCheckoutButton::class);
+            Livewire::component('spike.update-payment-method-paddle', UpdatePaymentMethodPaddle::class);
+            Livewire::component('spike.product-checkout-button-paddle', PaddleCheckoutButton::class);
         }
     }
 

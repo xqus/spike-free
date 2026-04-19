@@ -5,7 +5,7 @@
     </x-slot:title>
 
     <div>
-        <livewire:spike::purchase-credits />
+        <livewire:spike.purchase-credits />
     </div>
 
 </x-spike::layout>

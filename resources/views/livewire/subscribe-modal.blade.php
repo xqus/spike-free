@@ -171,7 +171,7 @@
                 @elseif(!$shouldLoadPaymentMethod)
                     {{ __('spike::translations.loading') }}
                 @else
-                    <a href="#" wire:click="$dispatch('openModal', { component: 'spike::add-payment-method' })"
+                    <a href="#" wire:click="$dispatch('openModal', { component: 'spike.add-payment-method' })"
                        class="text-brand font-semibold hover:opacity-80"
                     >{{ __('spike::translations.setup_payment_card') }}</a>
                 @endif

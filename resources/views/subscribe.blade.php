@@ -17,11 +17,11 @@
     @endif
 
     @if($subscription?->isPastDue() && $subscription->paddle_id)
-        <livewire:spike::update-payment-method-paddle :subscription="$subscription" />
+        <livewire:spike.update-payment-method-paddle :subscription="$subscription" />
     @endif
 
     <div>
-        <livewire:spike::subscriptions :preselected-plan="$preselectedPlan" />
+        <livewire:spike.subscriptions :preselected-plan="$preselectedPlan" />
     </div>
 
 </x-spike::layout>

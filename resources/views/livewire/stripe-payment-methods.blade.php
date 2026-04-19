@@ -10,7 +10,7 @@
                 </div>
                 <div class="ml-4 mt-4 flex-shrink-0">
                     <button type="button"
-                            wire:click="$dispatch('openModal', { component: 'spike::add-payment-method' })"
+                            wire:click="$dispatch('openModal', { component: 'spike.add-payment-method' })"
                             class="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-brand hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand">
                         {{ __('spike::translations.add_new_card') }}
                     </button>

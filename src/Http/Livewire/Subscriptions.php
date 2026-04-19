@@ -80,7 +80,7 @@ class Subscriptions extends Component
 
         return $this->dispatch(
             'openModal',
-            component: 'spike::subscribe',
+            component: 'spike.subscribe',
             arguments: ['price_id' => $price_id]
         );
     }
