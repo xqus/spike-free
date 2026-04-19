@@ -3,7 +3,6 @@
 namespace Opcodes\Spike\Stripe;
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
 use Laravel\Cashier\Checkout;
 use Opcodes\Spike\Cart;
 use Opcodes\Spike\CartItem;
@@ -28,11 +27,14 @@ class CartCheckout
      * @param array $options Additional options to pass to the Stripe checkout session
      * @param string|null $successUrl URL to redirect to after successful payment
      * @param string|null $cancelUrl URL to redirect to after payment is canceled
-     * @return RedirectResponse|Redirector
      */
-    public function redirectToStripeCheckout(array $options = [], ?string $successUrl = null, ?string $cancelUrl = null)
+    public function redirectToStripeCheckout(array $options = [], ?string $successUrl = null, ?string $cancelUrl = null): RedirectResponse
     {
-        return $this->newStripeCheckout($options, $successUrl, $cancelUrl)->redirect();
+        $checkout = $this->newStripeCheckout($options, $successUrl, $cancelUrl);
+
+        // Avoid Cashier's Checkout::redirect() here: inside Livewire it resolves the Redirect
+        // facade to Livewire's Redirector, which violates Cashier's RedirectResponse return type.
+        return new RedirectResponse($checkout->asStripeCheckoutSession()->url, 303);
     }
 
     /**
