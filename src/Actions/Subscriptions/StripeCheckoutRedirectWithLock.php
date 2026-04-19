@@ -2,6 +2,7 @@
 
 namespace Opcodes\Spike\Actions\Subscriptions;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Opcodes\Spike\Facades\Spike;
@@ -9,10 +10,9 @@ use Opcodes\Spike\Stripe\Interfaces\SubscriptionCheckoutRedirectInterface;
 
 class StripeCheckoutRedirectWithLock
 {
-    public function handle($preselectedPlan)
+    public function handle($preselectedPlan): RedirectResponse
     {
         if (! $this->supportsLocks()) {
-            // Locks not supported, just return early with the intended Checkout redirect.
             return app(SubscriptionCheckoutRedirectInterface::class)->handle($preselectedPlan);
         }
 
@@ -28,7 +28,11 @@ class StripeCheckoutRedirectWithLock
         } else {
             Log::warning('Could not acquire lock for subscription checkout. Redirecting back...');
 
-            $redirect = redirect()->back();
+            $previous = url()->previous();
+            $redirect = new RedirectResponse(
+                ($previous && $previous !== url()->current()) ? $previous : route('spike.subscribe'),
+                302
+            );
         }
 
         return $redirect;

@@ -2,7 +2,7 @@
 
 namespace Opcodes\Spike\Stripe\Actions;
 
-use Laravel\Cashier\Checkout;
+use Illuminate\Http\RedirectResponse;
 use Opcodes\Spike\Facades\Spike;
 use Opcodes\Spike\Stripe\Interfaces\SubscriptionCheckoutRedirectInterface;
 use Opcodes\Spike\Stripe\PaymentGateway;
@@ -10,7 +10,7 @@ use Opcodes\Spike\SubscriptionPlan;
 
 class SubscriptionCheckoutRedirect implements SubscriptionCheckoutRedirectInterface
 {
-    public function handle(SubscriptionPlan $plan): Checkout
+    public function handle(SubscriptionPlan $plan): RedirectResponse
     {
         $subscriptionBuilder = Spike::resolve()->newSubscription(
             PaymentGateway::$subscriptionName,
@@ -30,6 +30,10 @@ class SubscriptionCheckoutRedirect implements SubscriptionCheckoutRedirectInterf
             $options['locale'] = $locale;
         }
 
-        return $subscriptionBuilder->checkout($options);
+        $checkout = $subscriptionBuilder->checkout($options);
+
+        // Same rationale as CartCheckout::redirectToStripeCheckout(): Livewire must receive
+        // a real RedirectResponse, not Cashier's redirect() / Responsable indirection.
+        return new RedirectResponse($checkout->asStripeCheckoutSession()->url, 303);
     }
 }
